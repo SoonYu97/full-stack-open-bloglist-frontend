@@ -24,21 +24,22 @@ test('renders blog\'s title and author without url and likes', () => {
 })
 
 test('renders blog\'s url and likes after button clicked', async () => {
+  const loginUser = {
+    id: 1,
+    name: 'SuperUser',
+    username: 'root'
+  }
   const blog = {
     title: 'Component testing',
     author: 'SuperUser',
     url: 'https://www.example.com',
-    likes: 2,
-    user: {
-      id: 1,
-      name: 'SuperUser',
-      username: 'root'
-    }
+    likes: 0,
+    user: loginUser
   }
 
 
   render(
-    <Blog blog={blog} />
+    <Blog blog={blog} user={loginUser} />
   )
 
   const user = userEvent.setup()
@@ -50,22 +51,23 @@ test('renders blog\'s url and likes after button clicked', async () => {
 })
 
 test('update likes', async () => {
+  const loginUser = {
+    id: 1,
+    name: 'SuperUser',
+    username: 'root'
+  }
   const blog = {
     title: 'Component testing',
     author: 'SuperUser',
     url: 'https://www.example.com',
     likes: 0,
-    user: {
-      id: 1,
-      name: 'SuperUser',
-      username: 'root'
-    }
+    user: loginUser
   }
 
   const mockHandler = jest.fn()
 
   const { container } = render(
-    <Blog blog={blog} updateBlog={mockHandler}/>
+    <Blog blog={blog} user={loginUser} updateBlog={mockHandler}/>
   )
 
   const user = userEvent.setup()
@@ -81,23 +83,24 @@ test('update likes', async () => {
 })
 
 test('delete blog', async () => {
+  const loginUser = {
+    id: 1,
+    name: 'SuperUser',
+    username: 'root'
+  }
   const blog = {
     title: 'Component testing',
     author: 'SuperUser',
     url: 'https://www.example.com',
     likes: 0,
-    user: {
-      id: 1,
-      name: 'SuperUser',
-      username: 'root'
-    }
+    user: loginUser
   }
 
   const mockHandler = jest.fn()
   window.confirm = jest.fn(() => true)
 
   const { container } = render(
-    <Blog blog={blog} deleteBlog={mockHandler}/>
+    <Blog blog={blog} user={loginUser} deleteBlog={mockHandler}/>
   )
 
   const user = userEvent.setup()

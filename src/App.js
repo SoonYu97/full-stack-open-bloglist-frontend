@@ -136,7 +136,7 @@ const App = () => {
     <div>
       {message !== null && <Notification message={message} />}
       {user === null ? (
-        <Togglable buttonLabel="login">
+        <Togglable buttonLabel='login'>
           <LoginForm {...loginProps} />
         </Togglable>
       ) : (
@@ -145,17 +145,20 @@ const App = () => {
           <p>
             {user.name} logged in <button onClick={logout}>logout</button>
           </p>
-          <Togglable buttonLabel="new blog" ref={blogFormRef}>
+          <Togglable buttonLabel='new blog' ref={blogFormRef}>
             <BlogForm createBlog={createBlog} />
           </Togglable>
-          {blogs.map((blog) => (
-            <Blog
-              key={blog.id}
-              blog={blog}
-              updateBlog={updateBlog}
-              deleteBlog={deleteBlog}
-            />
-          ))}
+          <div>
+            {blogs.map((blog) => (
+              <Blog
+                key={blog.id}
+                blog={blog}
+                user={user}
+                updateBlog={updateBlog}
+                deleteBlog={deleteBlog}
+              />
+            ))}
+          </div>
         </>
       )}
     </div>

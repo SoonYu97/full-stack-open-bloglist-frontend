@@ -9,8 +9,9 @@ const LoginForm = ({ username, password, setUsername, setPassword, login }) => {
           <label>
             username:
             <input
-              type="text"
+              type='text'
               required
+              id='username-input'
               value={username}
               onChange={({ target }) => setUsername(target.value)}
             />
@@ -20,15 +21,16 @@ const LoginForm = ({ username, password, setUsername, setPassword, login }) => {
           <label>
             password:
             <input
-              type="password"
+              type='password'
               required
+              id='password-input'
               value={password}
               onChange={({ target }) => setPassword(target.value)}
             />
           </label>
         </div>
         <div>
-          <button type="submit">login</button>
+          <button id='login-button' type='submit'>login</button>
         </div>
       </form>
     </>

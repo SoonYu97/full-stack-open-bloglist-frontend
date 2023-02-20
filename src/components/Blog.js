@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import PropTypes from 'prop-types'
 
-const Blog = ({ blog, updateBlog, deleteBlog }) => {
+const Blog = ({ blog, user, updateBlog, deleteBlog }) => {
   const [showMore, setShowMore] = useState(false)
 
   const updateLike = () => {
@@ -20,9 +20,9 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
     }
   }
   return (
-    <div style={blogStyle}>
+    <div className='blog' style={blogStyle}>
       {blog.title} {blog.author}{' '}
-      <button onClick={() => setShowMore(!showMore)}>
+      <button name='more' onClick={() => setShowMore(!showMore)}>
         {showMore ? 'hide' : 'view'}
       </button>
       {showMore && (
@@ -31,13 +31,13 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
             <a href={blog.url}>{blog.url}</a>
           </div>
           <div>
-            like{blog.likes > 0 && 's'} {blog.likes}{' '}
-            <button id='like-button' onClick={updateLike}>like</button>
+            like{blog.likes > 1 && 's'} {blog.likes}{' '}
+            <button name='like' id='like-button' onClick={updateLike}>like</button>
           </div>
           <div>{blog.user.name}</div>
-          <div>
-            <button id='delete-button' onClick={deleteB}>delete</button>
-          </div>
+          {user.name === blog.user.name && <div>
+            <button name='delete' id='delete-button' onClick={deleteB}>delete</button>
+          </div>}
         </div>
       )}
     </div>
